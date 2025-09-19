@@ -21,12 +21,13 @@ jobs:
       - name: Create Flutter scaffold
         run: flutter create fx_levels
 
-      - name: Apply our files
+      - name: Apply our files (copy code & assets correctly)
         run: |
-          cp -r lib fx_levels/lib
+          rm -rf fx_levels/lib
+          mkdir -p fx_levels/lib fx_levels/assets
+          cp -r lib/. fx_levels/lib/
+          cp -r assets/. fx_levels/assets/
           cp pubspec.yaml fx_levels/pubspec.yaml
-          mkdir -p fx_levels/assets
-          cp assets/icon.png fx_levels/assets/icon.png
 
       - name: Pub get
         working-directory: fx_levels
